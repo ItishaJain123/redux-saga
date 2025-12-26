@@ -1,0 +1,74 @@
+<h1>Why Redux Saga?</h1>
+
+<p>
+  In real applications, handling asynchronous logic becomes complex very
+  quickly.
+</p>
+
+<p>Things usually start simple:</p>
+
+<ul>
+  <li>fetch data from an API</li>
+  <li>store response in Redux</li>
+</ul>
+
+<p>But as the application grows, async logic starts spreading everywhere.</p>
+
+<hr />
+
+<h2>Problems without a proper async layer</h2>
+
+<ul>
+  <li>API calls written inside components</li>
+  <li>business logic mixed with UI code</li>
+  <li>nested callbacks and promises</li>
+  <li>hard to cancel ongoing requests</li>
+  <li>duplicate loading and error handling logic</li>
+</ul>
+
+<p>This makes the codebase harder to read, test, and maintain.</p>
+
+<hr />
+
+<h2>Why this is dangerous in large apps</h2>
+
+<p>
+  Applications like CRMs, dashboards, and admin panels are not simple. They
+  involve:
+</p>
+
+<ul>
+  <li>multiple dependent API calls</li>
+  <li>background tasks and polling</li>
+  <li>bulk operations</li>
+  <li>retry and failure handling</li>
+</ul>
+
+<p>Managing all this directly inside components leads to fragile code.</p>
+
+<hr />
+
+<h2>How Redux Saga helps</h2>
+
+<p>Redux Saga introduces a dedicated layer for handling side effects.</p>
+
+<ul>
+  <li>components stay focused on UI</li>
+  <li>reducers remain pure</li>
+  <li>async flows become predictable</li>
+  <li>logic is easy to test and reason about</li>
+</ul>
+
+<p>
+  Instead of reacting to promises, Saga reacts to <strong>actions</strong>,
+  which keeps the flow consistent with Redux.
+</p>
+
+<hr />
+
+<h2>Key takeaway</h2>
+
+<p>
+  Redux Saga exists to bring structure and control to complex async workflows,
+  especially in large and long-living applications.
+</p>

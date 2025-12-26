@@ -1,0 +1,99 @@
+<h1>Redux Saga vs Redux Thunk</h1>
+
+<img
+  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrRYwvYe39cz_Id3ZNYN92eij57IzwkRguzA&s"
+  alt="Redux Saga vs Redux Thunk"
+  style="width: 500px; height: 300px"
+/>
+
+<p>
+  Both Redux Saga and Redux Thunk are middleware used to handle asynchronous
+  logic in Redux applications.
+</p>
+
+<p>
+  The difference is not about which one is better, but about
+  <strong>which problem size</strong> they are designed for.
+</p>
+
+<hr />
+
+<h2>Redux Thunk</h2>
+
+<p>
+  Redux Thunk allows action creators to return functions instead of plain
+  objects.
+</p>
+
+<p>
+  This makes it easy to write async logic like API calls directly inside
+  actions.
+</p>
+
+<ul>
+  <li>simple to learn</li>
+  <li>minimal setup</li>
+  <li>good for small applications</li>
+</ul>
+
+<p>However, as the app grows, Thunks can become:</p>
+
+<ul>
+  <li>deeply nested</li>
+  <li>hard to cancel</li>
+  <li>difficult to test</li>
+  <li>tightly coupled to Redux dispatch</li>
+</ul>
+
+<hr />
+
+<h2>Redux Saga</h2>
+
+<p>Redux Saga uses generator functions to describe async flows step by step.</p>
+
+<p>
+  Instead of executing side effects immediately, Sagas
+  <strong>describe</strong> what should happen.
+</p>
+
+<ul>
+  <li>clear control over execution flow</li>
+  <li>built-in cancellation support</li>
+  <li>better handling of complex scenarios</li>
+  <li>highly testable logic</li>
+</ul>
+
+<p>This makes Saga more suitable for large and long-running applications.</p>
+
+<hr />
+
+<h2>Key differences</h2>
+
+<ul>
+  <li>Thunk is promise-based, Saga is generator-based</li>
+  <li>Thunk executes logic immediately, Saga controls execution</li>
+  <li>Thunk scales poorly with complexity, Saga scales well</li>
+</ul>
+
+<img
+  src="https://media.licdn.com/dms/image/v2/D5622AQFBLtzv83P1fg/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1686661003583?e=2147483647&v=beta&t=7N-k3PB6obAnv2TbqKYd3Xo1YR92EHu102SqkJ45pXA"
+/>
+
+<hr />
+
+<h2>When to use what</h2>
+
+<p>Use <strong>Redux Thunk</strong> when:</p>
+
+<ul>
+  <li>the app is small</li>
+  <li>async logic is minimal</li>
+</ul>
+
+<p>Use <strong>Redux Saga</strong> when:</p>
+
+<ul>
+  <li>async flows are complex</li>
+  <li>cancellation and retries matter</li>
+  <li>business logic must stay outside components</li>
+</ul>

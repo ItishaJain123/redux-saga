@@ -1,0 +1,106 @@
+<h1>Generator Functions</h1>
+
+<p>
+  Redux Saga is built on top of JavaScript
+  <strong>generator functions</strong>.
+</p>
+
+<p>
+  At first, generator functions may look confusing, but the idea behind them is
+  simple.
+</p>
+
+<hr />
+
+<h2>What is a generator function?</h2>
+
+<p>
+  A generator function is a special type of function that can pause and resume
+  its execution.
+</p>
+
+<p>
+  It is defined using <strong>function*</strong> and uses the
+  <strong>yield</strong> keyword.
+</p>
+
+<img
+  src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*mU1-Of8JD_JUn60-f55Yug.png"
+  alt="Functions vs Generator Function"
+/>
+
+<pre>
+  <div class="code-box">
+<code>
+function* exampleGenerator() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+</code>
+</div>
+</pre>
+
+<p>Each <code>yield</code> pauses the function and returns a value.</p>
+
+<hr />
+
+<h2>Why normal functions are not enough</h2>
+
+<p>Async logic often needs:</p>
+
+<ul>
+  <li>waiting for an API response</li>
+  <li>pausing execution</li>
+  <li>resuming after completion</li>
+  <li>handling success or failure</li>
+</ul>
+
+<p>
+  Promises handle this, but they execute immediately and are harder to control
+  once started.
+</p>
+
+<hr />
+
+<h2>Why Redux Saga uses generators</h2>
+
+<p>Generators allow Redux Saga to:</p>
+
+<ul>
+  <li>pause execution at any step</li>
+  <li>resume when an effect completes</li>
+  <li>cancel running tasks</li>
+  <li>control complex async flows</li>
+</ul>
+
+<p>
+  Instead of running async code directly, Sagas <strong>describe</strong> each
+  step using <code>yield</code>.
+</p>
+
+<hr />
+
+<h2>Generator in a Saga</h2>
+
+<pre>
+  <div class="code-box">
+<code>
+function* fetchUserSaga() {
+  yield call(fetchUserApi);
+  yield put({ type: "USER_FETCH_SUCCESS" });
+}
+</code>
+</div>
+</pre>
+
+<p>Here, each line runs step by step under Saga's control.</p>
+
+<hr />
+
+<h2>Key takeaway</h2>
+
+<p>
+  Generator functions give Redux Saga its power. They make async flows readable,
+  controllable, and easy to reason about.
+</p>

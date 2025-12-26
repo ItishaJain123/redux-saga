@@ -1,0 +1,67 @@
+<h1>Watchers & Workers</h1>
+
+<p>Redux Saga typically follows a <strong>Watcher–Worker</strong> pattern.</p>
+
+<img
+  src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*JwNfSV6Ldp-_QjEV"
+/>
+
+<p>This pattern helps keep responsibilities clear and code organized.</p>
+
+<hr />
+
+<h2>Watcher Saga</h2>
+
+<p>A watcher saga listens for specific Redux actions.</p>
+
+<ul>
+  <li>waits for actions</li>
+  <li>does not perform business logic</li>
+  <li>delegates work to worker sagas</li>
+</ul>
+
+<div class="code-box">
+  <code>
+    function* watchFetchUsers() { yield takeEvery("FETCH_USERS",
+    fetchUsersWorker); }
+  </code>
+</div>
+
+<hr />
+
+<h2>Worker Saga</h2>
+
+<p>A worker saga performs the actual asynchronous work.</p>
+
+<ul>
+  <li>calls APIs</li>
+  <li>handles success and failure</li>
+  <li>dispatches result actions</li>
+</ul>
+
+<div class="code-box">
+  <code>
+    function* fetchUsersWorker() { try { const users = yield
+    call(fetchUsersApi); yield put({ type: "FETCH_USERS_SUCCESS", payload: users
+    }); } catch (error) { yield put({ type: "FETCH_USERS_FAILURE", error }); } }
+  </code>
+</div>
+
+<hr />
+
+<h2>How they work together</h2>
+
+<p>The watcher listens for an action and starts the worker.</p>
+
+<p>The worker performs the task and dispatches the result.</p>
+
+<p>This separation makes complex async flows easy to manage.</p>
+
+<hr />
+
+<h2>Key takeaway</h2>
+
+<p>
+  Watchers decide <strong>when</strong> to run. Workers decide
+  <strong>what</strong> to do.
+</p>

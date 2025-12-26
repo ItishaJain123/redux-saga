@@ -1,0 +1,75 @@
+<h1>Error Handling in Redux Saga</h1>
+
+<p>Handling errors properly is critical in real-world applications.</p>
+
+<p>
+  Redux Saga provides a clean and predictable way to manage failures without
+  breaking the UI.
+</p>
+
+<hr />
+
+<h2>Why error handling matters</h2>
+
+<ul>
+  <li>API requests can fail</li>
+  <li>network issues are common</li>
+  <li>users need meaningful feedback</li>
+  <li>apps should not crash on failure</li>
+</ul>
+
+<p>
+  If errors are handled inside components, logic becomes duplicated and hard to
+  maintain.
+</p>
+
+<hr />
+
+<h2>Using try / catch in sagas</h2>
+
+<p>
+  Redux Saga uses normal JavaScript <strong>try / catch</strong>
+  blocks inside generator functions.
+</p>
+
+<div class="code-box">
+  <code>
+    function* fetchUsersWorker() { try { const users = yield
+    call(fetchUsersApi); yield put({ type: "FETCH_USERS_SUCCESS", payload: users
+    }); } catch (error) { yield put({ type: "FETCH_USERS_FAILURE", error }); } }
+  </code>
+</div>
+
+<p>This keeps success and failure logic in one place.</p>
+
+<hr />
+
+<h2>Handling failure in Redux</h2>
+
+<p>When an error occurs, Saga dispatches a failure action.</p>
+
+<ul>
+  <li>reducers update error state</li>
+  <li>UI reacts based on state</li>
+  <li>no direct error handling in components</li>
+</ul>
+
+<hr />
+
+<h2>Benefits of Saga-based error handling</h2>
+
+<ul>
+  <li>centralized error logic</li>
+  <li>consistent error handling patterns</li>
+  <li>easy to retry or log errors</li>
+  <li>better control over user experience</li>
+</ul>
+
+<hr />
+
+<h2>Key takeaway</h2>
+
+<p>
+  Redux Saga allows errors to be handled gracefully without leaking business
+  logic into UI components.
+</p>

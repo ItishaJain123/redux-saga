@@ -1,0 +1,73 @@
+<h1>Testing Redux Sagas</h1>
+
+<p>One of the strongest advantages of Redux Saga is how easy it is to test.</p>
+
+<p>
+  This is possible because sagas are
+  <strong>pure generator functions</strong>.
+</p>
+
+<hr />
+
+<h2>Why saga testing is simple</h2>
+
+<p>
+  Sagas do not execute async code directly. Instead, they
+  <strong>yield effects</strong>.
+</p>
+
+<ul>
+  <li>effects are plain JavaScript objects</li>
+  <li>no real API calls during tests</li>
+  <li>no mocking of network requests</li>
+</ul>
+
+<hr />
+
+<h2>Testing a saga step by step</h2>
+
+<p>A saga can be tested by manually advancing the generator.</p>
+
+<div class="code-box">
+  <code>
+    const saga = fetchUsersWorker(); expect(saga.next().value)
+    .toEqual(call(fetchUsersApi)); expect(saga.next(mockUsers).value)
+    .toEqual(put({ type: "FETCH_USERS_SUCCESS", payload: mockUsers, }));
+  </code>
+</div>
+
+<p>Each <code>yield</code> can be verified independently.</p>
+
+<hr />
+
+<h2>Testing error scenarios</h2>
+
+<p>Error cases can be tested by throwing an error into the generator.</p>
+
+<div class="code-box">
+  <code>
+    const saga = fetchUsersWorker(); expect(saga.next().value)
+    .toEqual(call(fetchUsersApi)); expect(saga.throw(new Error("API
+    failed")).value) .toEqual(put({ type: "FETCH_USERS_FAILURE", error:
+    expect.any(Error), }));
+  </code>
+</div>
+
+<hr />
+
+<h2>Why this matters in large applications</h2>
+
+<ul>
+  <li>business logic is tested without UI</li>
+  <li>tests are fast and deterministic</li>
+  <li>complex flows are easy to verify</li>
+</ul>
+
+<hr />
+
+<h2>Key takeaway</h2>
+
+<p>
+  Redux Saga makes async logic predictable and testable. This is a major
+  advantage in enterprise-scale applications.
+</p>

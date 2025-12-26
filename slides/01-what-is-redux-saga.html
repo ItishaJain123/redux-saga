@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>What is Redux Saga?</title>
+  </head>
+  <body>
+    <h1>What is Redux Saga?</h1>
+
+    <p>
+      Redux Saga is a library used with Redux to handle
+      <strong>side effects</strong>
+      in a predictable and manageable way.
+    </p>
+
+    <p>
+      In simple terms, Redux Saga helps you manage things that happen
+      <strong>outside the Redux store</strong>, such as:
+    </p>
+
+    <ul>
+      <li>API calls</li>
+      <li>delays and timers</li>
+      <li>background tasks</li>
+      <li>data fetching and syncing</li>
+      <li>cancelling ongoing operations</li>
+    </ul>
+
+    <img
+      src="https://media.geeksforgeeks.org/wp-content/uploads/20230912133412/Screenshot-2023-09-12-132639.png"
+      alt="Redux Saga middleware flow"
+    />
+
+    <hr />
+
+    <h2>The core idea</h2>
+
+    <p>
+      Redux Saga works by running special JavaScript functions called
+      <strong>generator functions</strong> in the background.
+    </p>
+
+    <p>These generator functions listen for Redux actions and decide:</p>
+
+    <ul>
+      <li>what async work to perform</li>
+      <li>when to perform it</li>
+      <li>what to do on success or failure</li>
+    </ul>
+
+    <p>
+      Instead of writing async logic inside components or action creators, Redux
+      Saga moves that logic into a <strong>separate layer</strong>.
+    </p>
+
+    <hr />
+
+    <h2>Where Redux Saga fits</h2>
+
+    <p>Redux Saga sits between:</p>
+
+    <ul>
+      <li>the action being dispatched</li>
+      <li>and the reducer updating the store</li>
+    </ul>
+
+    <p>
+      It acts as a <strong>middleware</strong> that intercepts actions, performs
+      side effects, and then dispatches new actions based on results.
+    </p>
+
+    <hr />
+
+    <h2>Key takeaway</h2>
+
+    <p>
+      Redux Saga does not replace Redux. It <strong>enhances Redux</strong> by
+      keeping reducers pure and moving complex async logic into an organized,
+      testable flow.
+    </p>
+  </body>
+</html>

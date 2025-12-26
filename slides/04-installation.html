@@ -1,0 +1,85 @@
+<h1>Installation & Setup</h1>
+
+<p>Redux Saga is added to a Redux application as a middleware.</p>
+
+<p>The setup process is straightforward and happens in three steps.</p>
+
+<hr />
+
+<h2>Step 1: Install the package</h2>
+
+<pre>
+  <div class="code-box">
+<code>
+npm install redux-saga
+</code>
+</div>
+
+</pre>
+
+<p>This installs the core Redux Saga library.</p>
+
+<hr />
+
+<h2>Step 2: Create a saga middleware</h2>
+
+<p>
+  Redux Saga works by creating a middleware instance and attaching it to the
+  Redux store.
+</p>
+
+<pre>
+  <div class="code-box">
+<code>
+import createSagaMiddleware from "redux-saga";
+
+const sagaMiddleware = createSagaMiddleware();
+</code>
+</div>
+</pre>
+
+<hr />
+
+<h2>Step 3: Add middleware to the store</h2>
+
+<p>The saga middleware is added when creating the Redux store.</p>
+
+<pre>
+  <div class="code-box">
+<code>
+import { configureStore } from "@reduxjs/toolkit";
+
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(sagaMiddleware),
+});
+</code>
+</div>
+</pre>
+
+<hr />
+
+<h2>Step 4: Run the root saga</h2>
+
+<p>After creating the store, start the saga by running the root saga.</p>
+
+<pre>
+  <div class="code-box">
+<code>
+import rootSaga from "./sagas";
+
+sagaMiddleware.run(rootSaga);
+</code>
+</div>
+
+</pre>
+
+<hr />
+
+<h2>Key takeaway</h2>
+
+<p>
+  Redux Saga setup happens once. After that, all async logic lives inside sagas,
+  not inside components or reducers.
+</p>

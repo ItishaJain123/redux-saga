@@ -1,0 +1,83 @@
+<h1>Cancellation & Race Effects</h1>
+
+<p>In real applications, not all async tasks should run forever.</p>
+
+<p>
+  Redux Saga provides built-in support for
+  <strong>cancellation</strong> and <strong>race conditions</strong>.
+</p>
+
+<hr />
+
+<h2>Why cancellation is important</h2>
+
+<ul>
+  <li>users navigate away from pages</li>
+  <li>new requests replace old ones</li>
+  <li>outdated responses should be ignored</li>
+  <li>unnecessary API calls waste resources</li>
+</ul>
+
+<p>Without cancellation, async code can easily cause bugs.</p>
+
+<hr />
+
+<h2>Automatic cancellation with takeLatest</h2>
+
+<p>
+  The <code>takeLatest</code> effect cancels the previous task if the same
+  action is dispatched again.
+</p>
+
+<div class="code-box">
+  <code>
+    function* watchSearchUsers() { yield takeLatest("SEARCH_USERS",
+    searchUsersWorker); }
+  </code>
+</div>
+
+<p>Only the latest request is allowed to complete.</p>
+
+<hr />
+
+<h2>Manual cancellation</h2>
+
+<p>Redux Saga also allows manual control over task cancellation.</p>
+
+<div class="code-box">
+  <code>
+    import { fork, cancel } from "redux-saga/effects"; function* taskSaga() { //
+    long running task } function* controllerSaga() { const task = yield
+    fork(taskSaga); yield cancel(task); }
+  </code>
+</div>
+
+<p>This is useful for background jobs and polling.</p>
+
+<hr />
+
+<h2>Race effect</h2>
+
+<p>
+  The <code>race</code> effect runs multiple effects in parallel and returns the
+  result of the one that finishes first.
+</p>
+
+<div class="code-box">
+  <code>
+    const { response, timeout } = yield race({ response: call(fetchData),
+    timeout: delay(5000), });
+  </code>
+</div>
+
+<p>This is useful for implementing timeouts and fallback logic.</p>
+
+<hr />
+
+<h2>Key takeaway</h2>
+
+<p>
+  Redux Saga gives you precise control over async execution. Cancellation and
+  race effects help prevent bugs and improve performance in complex
+  applications.
+</p>

@@ -1,0 +1,97 @@
+<h1>Effects in Redux Saga</h1>
+
+<p>
+  In Redux Saga, asynchronous work is handled using
+  <strong>effects</strong>.
+</p>
+
+<p>
+  An effect is a plain JavaScript object that describes
+  <strong>what should happen</strong>, not how it should happen.
+</p>
+
+<hr />
+
+<h2>Why effects exist</h2>
+
+<p>
+  Instead of calling async functions directly, Redux Saga lets you
+  <strong>yield effects</strong>.
+</p>
+
+<ul>
+  <li>execution stays under Saga’s control</li>
+  <li>flows can be paused or cancelled</li>
+  <li>logic becomes easy to test</li>
+</ul>
+
+<hr />
+
+<h2>Commonly used effects</h2>
+
+<h3>call</h3>
+
+<p>Used to call an asynchronous function such as an API request.</p>
+
+<div class="code-box">
+  <code> yield call(fetchUsersApi); </code>
+</div>
+
+<p>Saga waits until the function resolves before moving to the next step.</p>
+
+<hr />
+
+<h3>put</h3>
+
+<p>Used to dispatch a Redux action.</p>
+
+<div class="code-box">
+  <code> yield put({ type: "USERS_FETCH_SUCCESS", payload: users }); </code>
+</div>
+
+<p>This is similar to <code>dispatch</code>, but controlled by Saga.</p>
+
+<hr />
+
+<h3>take</h3>
+
+<p>Used to pause the saga until a specific action is dispatched.</p>
+
+<div class="code-box">
+  <code> yield take("FETCH_USERS"); </code>
+</div>
+
+<hr />
+
+<h3>select</h3>
+
+<p>Used to read data from the Redux store.</p>
+
+<div class="code-box">
+  <code> const userId = yield select(state => state.user.id); </code>
+</div>
+
+<hr />
+
+<h2>Declarative nature of effects</h2>
+
+<p>When you write:</p>
+
+<div class="code-box">
+  <code> yield call(fetchData); </code>
+</div>
+
+<p>
+  You are not executing the function immediately. You are describing the intent.
+</p>
+
+<p>Redux Saga decides when and how to execute it.</p>
+
+<hr />
+
+<h2>Key takeaway</h2>
+
+<p>
+  Effects are the foundation of Redux Saga. They make async flows predictable,
+  controllable, and easy to reason about.
+</p>

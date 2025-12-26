@@ -1,0 +1,85 @@
+<h1>Why Redux Saga for CRM & Cockpit Projects</h1>
+
+<p>
+  CRM and Cockpit applications are not simple CRUD systems. They involve complex
+  workflows, background processes, and strict data consistency requirements.
+</p>
+
+<hr />
+
+<h2>Nature of CRM & Cockpit applications</h2>
+
+<ul>
+  <li>multiple dependent API calls</li>
+  <li>long-running background tasks</li>
+  <li>bulk operations and imports</li>
+  <li>real-time or near real-time updates</li>
+  <li>strict error handling requirements</li>
+</ul>
+
+<p>
+  Managing this complexity directly inside components quickly becomes
+  unmanageable.
+</p>
+
+<hr />
+
+<h2>How Redux Saga helps</h2>
+
+<ul>
+  <li>centralizes business logic outside UI</li>
+  <li>controls async execution step by step</li>
+  <li>supports cancellation and retries</li>
+  <li>keeps reducers pure and predictable</li>
+</ul>
+
+<hr />
+
+<h2>Example CRM workflow</h2>
+
+<p>Consider a typical CRM flow:</p>
+
+<ul>
+  <li>create a lead</li>
+  <li>assign the lead to a user</li>
+  <li>send notifications</li>
+  <li>refresh dashboard data</li>
+</ul>
+
+<p>
+  With Redux Saga, this entire flow can be handled inside a single, readable
+  saga.
+</p>
+
+<hr />
+
+<h2>Cockpit dashboards and background tasks</h2>
+
+<p>Cockpit systems often require:</p>
+
+<ul>
+  <li>automatic data refresh</li>
+  <li>polling or scheduled updates</li>
+  <li>task cancellation on navigation</li>
+</ul>
+
+<p>
+  Redux Saga supports these patterns naturally using delays, loops, and
+  cancellation effects.
+</p>
+
+<hr />
+
+<h2>Scalability and maintainability</h2>
+
+<ul>
+  <li>new features add new sagas, not component complexity</li>
+  <li>logic remains testable as the app grows</li>
+  <li>clear ownership of side effects</li>
+</ul>
+
+<hr />
+
+<h2>Key takeaway</h2>
+
+<p>Redux Saga is well-suited for large, long-l</p>
